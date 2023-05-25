@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <title>관리자 페이지</title>
+</head>
+<body>
+<div class="container" style="max-width:800px">
+    <div class="py-5 text-center">
+        <h2>관리자 페이지</h2>
+    </div>
+
+    <hr class="my-4">
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>회원 번호</th>
+                <th>회원 이름</th>
+                <th>회원 아이디</th>
+                <th>회원 비밀번호</th>
+                <th>회원 전화번호</th>
+                <th>회원 성별</th>
+                <th>보유 금액</th>
+                <th>회원 삭제</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="member, memberStat : ${members}">
+                <td th:text="${memberStat.index + 1}"></td>
+                <td th:text="${member.name}">테스터</td>
+                <td th:text="${member.loginId}">test</td>
+                <td th:text="${member.password}">test!</td>
+                <td th:text="|${member.mobileCarrier} 0${member.phone}|">SKT 01012345678</td>
+                <td th:text="${member.gender.getSex()}">남</td>
+                <td th:text="${member.money}">100000</td>
+                <td>
+                    <!-- 삭제 버튼을 제외하고 텍스트만 출력 -->
+                    <span th:unless="${memberStat.index == 0}">
+                       <form role="form" th:action="@{/admin/{memberId}/delete(memberId=${member.id})}" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="submit" value="삭제" class="btn btn-danger"
+                               onclick="return confirm('회원을 삭제하시겠습니까?')">
+                    </form>
+                    </span>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col">
+            <button
+                    class="w-100 btn btn-secondary btn-lg"
+                    onclick="location.href='main.html'"
+                    th:onclick="|location.href='@{/items}'|"
+                    type="button">
+                돌아가기
+            </button>
+        </div>
+    </div>
+
+</div>
+<script>
+
+    function deleteMember(memberId) {
+        let memberDelete = confirm("회원을 삭제하시겠습니까?");
+        if (memberDelete) {
+
+            location.href = '/admin/' + memberId + '/delete';
+        } else {
+            location.href = '/items';
+        }
+    }
+</script>
+</body>
+</html>

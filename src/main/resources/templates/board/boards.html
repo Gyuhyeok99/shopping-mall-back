@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link th:href="@{/css/bootstrap.min.css}"
+        href="../css/bootstrap.min.css" rel="stylesheet">
+  <title>게시판</title>
+</head>
+<body>
+<div class="container" style="max-width: 600px">
+  <div class="py-5 text-center">
+    <h2>게시판</h2>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary float-end"
+              onclick="location.href='addBoard.html'"
+              th:onclick="|location.href='@{/board/add}'|"
+              type="button">글 작성</button>
+    </div>
+  </div>
+  <hr class="my-4">
+  <div>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일시</th>
+        <th>조회수</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr th:each="board : ${boards}">
+        <td><a href="board.html" th:href="@{|/board/${board.id}|}" th:text="${board.id}">1</a></td>
+        <td><a href="board.html" th:href="@{|/board/${board.id}|}" th:text="${board.title}">제목1</a></td>
+        <td th:text="${board.author}">OO</td>
+        <td th:text="${#temporals.format(board.createDateTime, 'yyyy-MM-dd HH:mm:ss')}">yyyy-MM-dd- HH:mm:ss</td>
+        <td th:text="${board.view}">1</td>
+      </tr>
+
+      </tbody>
+
+    </table>
+  </div>
+  <div class="row">
+    <div class="col">
+    </div>
+    <div class="col">
+      <button
+              class="w-100 btn btn-secondary btn-lg"
+              onclick="location.href='main.html'"
+              th:onclick="|location.href='@{/items}'|"
+              type="button">
+        돌아가기
+      </button>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+package hello.login.web.admin;
+
+import hello.login.domain.member.Member;
+import hello.login.domain.member.MemberRepository;
+import hello.login.web.SessionConst;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.List;
+
+@Slf4j
+@Controller
+@RequiredArgsConstructor
+@RequestMapping("/admin")
+public class AdminController {
+    private final MemberRepository memberRepository;
+
+
+    @GetMapping
+    public String admin(@ModelAttribute("member") Member member, HttpServletRequest request, Model model) {
+        //로그인 멤버 정보
+        HttpSession session = request.getSession(false);
+        Member loginMember = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
+
+        if(!(loginMember.getId().equals(1) || loginMember.getLoginId().equals("test"))) {
+            return "redirect:/items";
+        }
+
+        List<Member> members = memberRepository.findAll();
+        model.addAttribute("members", members);
+        return "admin/admin";
+    }
+
+    //회원 삭제하는 기능
+    @PostMapping("/{memberId}/delete")
+    public String delete(@PathVariable("memberId") long memberId) {
+        log.info("memberId={}", memberId);
+        Member member = memberRepository.findById(memberId);
+        memberRepository.memberDelete(member);
+        return "redirect:/admin";
+    }
+}

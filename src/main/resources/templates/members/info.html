@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <link
+          th:href="@{/css/bootstrap.min.css}"
+          href="bootstrap.min.css"
+          rel="stylesheet"
+  />
+  <style>
+    .container {
+      max-width: 560px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="py-5 text-center">
+    <h2 th:text="| ${member.name} 님의 정보|" >OO 님의 정보</h2>
+  </div>
+
+  <!-- 추가 -->
+
+  <div>
+    <div>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>구매 상품</th>
+          <th>수량</th>
+          <!--<th>개당 가격</th> 추후 수정 예정 아직 공부 부족-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="purchaseItem : ${member.purchaseItems}">
+          <td th:text="${purchaseItem.key}"></td>
+          <td th:text="${purchaseItem.value}"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <label for="name">이름</label>
+    <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-control"
+            value="name"
+            readonly
+            th:value="${member.name}"
+    />
+  </div>
+  <div>
+    <label for="loginId">ID</label>
+    <input
+            type="text"
+            id="loginId"
+            name="loginId"
+            class="form-control"
+            value="Id"
+            readonly
+            th:value="${member.loginId}"
+    />
+  </div>
+  <div>
+    <label for="money">보유 금액</label>
+    <input
+            type="text"
+            id="money"
+            name="money"
+            class="form-control"
+            value="100000"
+            readonly
+            th:value="${member.money}"
+    />
+  </div>
+  <div>
+    <label for="phone">전화번호</label>
+    <input
+            type="tel"
+            id="phone"
+            name="phone"
+            class="form-control"
+            value="SKT 010-1234-5678"
+            readonly
+            th:value="|${member.mobileCarrier +' 0' +  member.phone}|"
+    />
+  </div>
+
+  <div>
+    <label for="gender">성별</label>
+    <input
+            type="text"
+            id="gender"
+            name="gender"
+            class="form-control"
+            value="남자"
+            readonly
+            th:value="${member.gender.getSex()}"
+    />
+  </div>
+  <div>
+    <label for="hobby">취미</label>
+    <input
+            type="text"
+            id="hobby"
+            name="hobby"
+            class="form-control"
+            value="독서"
+            readonly
+            th:value="${member.hobbies}"
+    />
+  </div>
+  <div>
+    <label for="introduce">본인 소개</label>
+    <input
+            type="text"
+            id="introduce"
+            name="introduce"
+            class="form-control"
+            value="안녕하세요~"
+            readonly
+            th:value="${member.introduce}"
+    />
+  </div>
+
+  <hr class="my-4" />
+
+  <div class="row">
+    <div class="col">
+    </div>
+    <div class="col">
+      <button
+              class="w-100 btn btn-secondary btn-lg"
+              onclick="location.href='main.html'"
+              th:onclick="|location.href='@{/items}'|"
+              type="button"
+
+      >
+        돌아가기
+      </button>
+    </div>
+  </div>
+</div>
+<!-- /container -->
+</body>
+</html>
