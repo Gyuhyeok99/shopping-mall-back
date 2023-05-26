@@ -1,7 +1,7 @@
 package hello.login.domain.board;
 
 import hello.login.domain.Board;
-import hello.login.repository.BoardRepository;
+import hello.login.repository.Memory.MemoryBoardRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class BoardRepositoryTest {
 
-    BoardRepository boardRepository = new BoardRepository();
+    MemoryBoardRepository boardRepository = new MemoryBoardRepository();
 
     @AfterEach
     void afterEach() {

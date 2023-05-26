@@ -1,7 +1,7 @@
 package hello.login.domain.member;
 
 import hello.login.domain.Member;
-import hello.login.repository.MemberRepository;
+import hello.login.repository.Memory.MemoryMemberRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,9 +9,11 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+
 class MemberRepositoryTest {
 
-    MemberRepository memberRepository = new MemberRepository();
+
+    MemoryMemberRepository memberRepository = new MemoryMemberRepository();
     @AfterEach
     void afterEach() {
         memberRepository.clearStore();

@@ -1,7 +1,7 @@
 package hello.login.domain.item;
 
 import hello.login.domain.Item;
-import hello.login.repository.ItemRepository;
+import hello.login.repository.Memory.MemoryItemRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.*;
 
 class ItemRepositoryTest {
 
-    ItemRepository itemRepository = new ItemRepository();
+    MemoryItemRepository itemRepository = new MemoryItemRepository();
 
     @AfterEach
     void afterEach() {
