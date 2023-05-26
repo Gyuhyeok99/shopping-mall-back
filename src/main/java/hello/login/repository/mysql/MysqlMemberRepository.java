@@ -11,7 +11,7 @@ import javax.persistence.EntityManager;
 import java.util.*;
 
 @Slf4j
-//@Repository
+@Repository
 @Transactional
 @RequiredArgsConstructor
 public class MysqlMemberRepository implements MemberRepository {
