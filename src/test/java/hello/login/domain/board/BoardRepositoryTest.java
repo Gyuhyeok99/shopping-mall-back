@@ -1,5 +1,7 @@
 package hello.login.domain.board;
 
+import hello.login.domain.Board;
+import hello.login.repository.BoardRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,6 @@
 package hello.login.web.argumentresolver;
 
-import hello.login.domain.member.Member;
+import hello.login.domain.Member;
 import hello.login.web.SessionConst;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;

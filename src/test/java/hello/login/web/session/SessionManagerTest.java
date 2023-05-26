@@ -1,6 +1,6 @@
 package hello.login.web.session;
 
-import hello.login.domain.member.Member;
+import hello.login.domain.Member;
 import hello.login.web.seesion.SessionManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;

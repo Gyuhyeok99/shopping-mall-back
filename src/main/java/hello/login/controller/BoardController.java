@@ -1,11 +1,10 @@
-package hello.login.web.border;
+package hello.login.controller;
 
-import hello.login.domain.board.Board;
-import hello.login.domain.board.BoardRepository;
-import hello.login.domain.item.Item;
-import hello.login.domain.member.Member;
+import hello.login.domain.Board;
+import hello.login.repository.BoardRepository;
+import hello.login.domain.Member;
 import hello.login.web.SessionConst;
-import hello.login.web.item.form.ItemUpdateForm;
+import hello.login.web.border.BoardForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

@@ -1,11 +1,9 @@
-package hello.login.domain.login;
+package hello.login.service;
 
-import hello.login.domain.member.Member;
-import hello.login.domain.member.MemberRepository;
+import hello.login.domain.Member;
+import hello.login.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

@@ -1,6 +1,6 @@
 package hello.login.validation;
 
-import hello.login.domain.item.Item;
+import hello.login.domain.Item;
 import org.junit.jupiter.api.Test;
 
 import javax.validation.ConstraintViolation;

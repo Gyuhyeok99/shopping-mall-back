@@ -1,4 +1,4 @@
-package hello.login.web.item.form;
+package hello.login.web.item;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;

@@ -1,9 +1,9 @@
-package hello.login.web.login;
+package hello.login.controller;
 
-import hello.login.domain.login.LoginService;
-import hello.login.domain.member.Member;
-import hello.login.domain.member.MemberRepository;
+import hello.login.service.LoginService;
+import hello.login.domain.Member;
 import hello.login.web.SessionConst;
+import hello.login.web.login.LoginForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

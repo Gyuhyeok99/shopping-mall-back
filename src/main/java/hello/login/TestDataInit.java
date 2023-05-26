@@ -1,12 +1,12 @@
 package hello.login;
 
-import hello.login.domain.board.Board;
-import hello.login.domain.board.BoardRepository;
-import hello.login.domain.item.Item;
-import hello.login.domain.item.ItemRepository;
+import hello.login.domain.Board;
+import hello.login.repository.BoardRepository;
+import hello.login.domain.Item;
+import hello.login.repository.ItemRepository;
 import hello.login.domain.member.GenderType;
-import hello.login.domain.member.Member;
-import hello.login.domain.member.MemberRepository;
+import hello.login.domain.Member;
+import hello.login.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

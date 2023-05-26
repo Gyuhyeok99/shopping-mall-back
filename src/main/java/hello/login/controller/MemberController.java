@@ -1,9 +1,9 @@
-package hello.login.web.member;
+package hello.login.controller;
 
-import hello.login.domain.item.ItemRepository;
+import hello.login.repository.ItemRepository;
 import hello.login.domain.member.GenderType;
-import hello.login.domain.member.Member;
-import hello.login.domain.member.MemberRepository;
+import hello.login.domain.Member;
+import hello.login.repository.MemberRepository;
 import hello.login.domain.member.MobileCarrierType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

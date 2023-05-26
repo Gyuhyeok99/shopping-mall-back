@@ -1,7 +1,7 @@
-package hello.login.web.admin;
+package hello.login.controller;
 
-import hello.login.domain.member.Member;
-import hello.login.domain.member.MemberRepository;
+import hello.login.domain.Member;
+import hello.login.repository.MemberRepository;
 import hello.login.web.SessionConst;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

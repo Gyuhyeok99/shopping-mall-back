@@ -1,5 +1,6 @@
-package hello.login.domain.member;
+package hello.login.domain;
 
+import hello.login.domain.member.GenderType;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 

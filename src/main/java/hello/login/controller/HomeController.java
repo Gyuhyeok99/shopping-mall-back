@@ -1,7 +1,7 @@
-package hello.login.web;
+package hello.login.controller;
 
-import hello.login.domain.member.Member;
-import hello.login.domain.member.MemberRepository;
+import hello.login.domain.Member;
+import hello.login.repository.MemberRepository;
 import hello.login.web.argumentresolver.Login;
 import hello.login.web.seesion.SessionManager;
 import lombok.RequiredArgsConstructor;
