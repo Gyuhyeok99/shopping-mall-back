@@ -35,8 +35,8 @@ public class TestDataInit {
         itemRepository.save(itemB);
 
         Member member = new Member();
-        member.setLoginId("test");
-        member.setPassword("test!");
+        member.setLoginId("test12");
+        member.setPassword("test!@#$");
         member.setName("관리자");
         member.setGender(GenderType.MAN);
         List<String> test = new ArrayList<>();
@@ -48,16 +48,16 @@ public class TestDataInit {
         member.setIntroduce("안녕하세요~");
 
         Member member1 = new Member();
-        member1.setLoginId("test1");
-        member1.setPassword("test@");
+        member1.setLoginId("test23");
+        member1.setPassword("test@#$%");
         member1.setName("테스터1");
         member1.setGender(GenderType.MAN);
         member1.setMobileCarrier("LG");
         member1.setPhone(1011112222);
 
         Member member2 = new Member();
-        member2.setLoginId("test2");
-        member2.setPassword("test#");
+        member2.setLoginId("test34");
+        member2.setPassword("test#$%^");
         member2.setName("테스터2");
         member2.setGender(GenderType.WOMAN);
         member2.setMobileCarrier("KT");

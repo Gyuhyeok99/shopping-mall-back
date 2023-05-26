@@ -1,6 +1,7 @@
 package hello.login.domain;
 
 import hello.login.domain.member.GenderType;
+import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
@@ -20,9 +21,9 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 12)
-    @Length(min = 6, max = 12)
+    @Column(name = "login_id", nullable = false, length = 12)
     private String loginId; //로그인 ID
+
 
     @Column(nullable = false, length = 8)
     @Length(min = 2, max = 8)
@@ -53,7 +54,7 @@ public class Member {
     private String introduce; //자기소개
 
     @Column(nullable = false)
-    private Integer money; //보유금액 회원 가입 시 100000원
+    private Integer money = 100000; //보유금액 회원 가입 시 100000원
 
     @ElementCollection
     @CollectionTable(name = "purchase_items", joinColumns = @JoinColumn(name = "member_id"))

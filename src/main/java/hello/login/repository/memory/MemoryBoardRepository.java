@@ -1,4 +1,4 @@
-package hello.login.repository.Memory;
+package hello.login.repository.memory;
 
 import hello.login.domain.Board;
 import hello.login.repository.BoardRepository;

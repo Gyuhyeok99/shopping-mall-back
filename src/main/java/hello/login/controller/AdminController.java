@@ -27,7 +27,7 @@ public class AdminController {
         HttpSession session = request.getSession(false);
         Member loginMember = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
 
-        if(!(loginMember.getId().equals(1) || loginMember.getLoginId().equals("test"))) {
+        if(!(loginMember.getId().equals(1) || loginMember.getLoginId().equals("test12"))) {
             return "redirect:/items";
         }
 
