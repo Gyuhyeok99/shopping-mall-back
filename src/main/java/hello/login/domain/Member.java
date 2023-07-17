@@ -3,14 +3,17 @@ package hello.login.domain;
 import hello.login.domain.member.GenderType;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Transactional
 @Data
 @Entity
 @Table(name = "member")
@@ -55,11 +58,11 @@ public class Member {
     @Column
     private Integer money = 100000; //보유금액 회원 가입 시 100000원
 
-    @ElementCollection
-    @CollectionTable
-    @MapKeyColumn
-    @Column
-    private Map<String, Integer> purchaseItems = new ConcurrentHashMap<>(); //구매한 아이템의 이름과 개수
+    @ElementCollection(fetch = FetchType.EAGER) // EAGER 로딩 설정
+    @CollectionTable(name = "purchase_items", joinColumns = @JoinColumn(name = "member_id"))
+    @MapKeyColumn(name = "item_name")
+    @Column(name = "quantity")
+    private Map<String, Integer> purchaseItems = new HashMap<>();
 
     public Member() {}
 }

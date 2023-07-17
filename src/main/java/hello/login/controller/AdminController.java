@@ -1,7 +1,7 @@
 package hello.login.controller;
 
 import hello.login.domain.Member;
-import hello.login.repository.MemberRepository;
+import hello.login.repository.jpa.JpaMemberRepository;
 import hello.login.web.SessionConst;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,12 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/admin")
 public class AdminController {
-    private final MemberRepository memberRepository;
+    private final JpaMemberRepository memberRepository;
 
 
     @GetMapping
@@ -27,7 +28,7 @@ public class AdminController {
         HttpSession session = request.getSession(false);
         Member loginMember = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
 
-        if(!(loginMember.getId().equals(1) || loginMember.getLoginId().equals("test12"))) {
+        if(!(loginMember.getId().equals(1) && loginMember.getLoginId().equals("test12"))) {
             return "redirect:/items";
         }
 
@@ -40,8 +41,7 @@ public class AdminController {
     @PostMapping("/{memberId}/delete")
     public String delete(@PathVariable("memberId") long memberId) {
         log.info("memberId={}", memberId);
-        Member member = memberRepository.findById(memberId);
-        memberRepository.memberDelete(member);
+        memberRepository.deleteById(memberId);
         return "redirect:/admin";
     }
 }

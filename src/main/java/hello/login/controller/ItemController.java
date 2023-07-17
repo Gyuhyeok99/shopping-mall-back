@@ -4,6 +4,8 @@ import hello.login.domain.Item;
 import hello.login.repository.ItemRepository;
 import hello.login.domain.Member;
 import hello.login.repository.MemberRepository;
+import hello.login.repository.jpa.JpaItemRepository;
+import hello.login.repository.jpa.JpaMemberRepository;
 import hello.login.web.SessionConst;
 import hello.login.web.item.ItemSaveForm;
 import hello.login.web.item.ItemUpdateForm;
@@ -29,7 +31,7 @@ import java.util.Optional;
 public class ItemController {
 
     private final ItemRepository itemRepository;
-    private final MemberRepository memberRepository;
+    private final JpaMemberRepository memberRepository;
 
 
     @GetMapping
@@ -139,9 +141,7 @@ public class ItemController {
             // 아이템 구매
             itemRepository.purchaseItem(itemId);
 
-
             // 구매한 아이템 정보 업데이트
-
             Map<String, Integer> purchaseItems = loginMember.getPurchaseItems();
             if (purchaseItems.containsKey(item.getItemName())) {
                 // 이미 구매한 아이템인 경우 수량 증가
@@ -155,19 +155,18 @@ public class ItemController {
             // 돈 차감 및 회원 정보 업데이트
             int newMoney = loginMember.getMoney() - item.getPrice();
             loginMember.setMoney(newMoney);
-            memberRepository.update(loginMember.getId(), loginMember);
 
             // 등록한 회원에게 돈 지급
             Optional<Member> raisedMember = memberRepository.findByName(item.getRaisedMember());
-            int raisedMemberMoney = raisedMember.map(Member::getMoney).orElse(0) + item.getPrice();
-            raisedMember.ifPresent(member -> member.setMoney(raisedMemberMoney));
             raisedMember.ifPresent(member -> {
-                Long memberId = member.getId();
+                int raisedMemberMoney = member.getMoney() + item.getPrice();
                 member.setMoney(raisedMemberMoney);
-                memberRepository.update(memberId, member);
             });
 
-
+            // 변경된 정보는 엔티티를 저장할 때 자동으로 업데이트됩니다.
+            itemRepository.save(item);
+            memberRepository.save(loginMember);
+            raisedMember.ifPresent(memberRepository::save);
 
             // 구매 완료 메시지 등을 처리한 후 이동할 페이지로 리다이렉트
             return "redirect:/items/" + itemId + "?status=success";

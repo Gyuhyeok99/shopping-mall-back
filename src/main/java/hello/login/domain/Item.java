@@ -1,15 +1,26 @@
 package hello.login.domain;
-
 import lombok.Data;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "item")
 @Data
 public class Item {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "item_name")
     private String itemName;
+
     private Integer price;
+
     private Integer quantity;
-    private String raisedMember; //등록한 사람
+
+    @Column(name = "raised_member")
+    private String raisedMember;
 
     public Item() {
     }
@@ -19,6 +30,5 @@ public class Item {
         this.price = price;
         this.quantity = quantity;
     }
-
 
 }

@@ -45,8 +45,8 @@ public class BoardController {
     @GetMapping("/add")
     public String addForm(Model model) {
 
-       model.addAttribute("board",new Board());
-       return "board/addBoard";
+        model.addAttribute("board",new Board());
+        return "board/addBoard";
     }
 
     @PostMapping("/add")
@@ -81,7 +81,7 @@ public class BoardController {
 
 
         //로그인한 사람과 작성자가 다르다면
-       if (!(board.getAuthor().equals(member.getName()))) {
+        if (!(board.getAuthor().equals(member.getName()))) {
             return "redirect:/board/{boardId}";
         }
 

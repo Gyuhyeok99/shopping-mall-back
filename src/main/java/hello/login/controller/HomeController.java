@@ -2,6 +2,7 @@ package hello.login.controller;
 
 import hello.login.domain.Member;
 import hello.login.repository.MemberRepository;
+import hello.login.repository.jpa.JpaMemberRepository;
 import hello.login.web.argumentresolver.Login;
 import hello.login.web.seesion.SessionManager;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class HomeController {
 
-    private final MemberRepository memberRepository;
+    private final JpaMemberRepository memberRepository;
     private final SessionManager sessionManager;
 
 

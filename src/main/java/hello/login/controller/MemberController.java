@@ -3,8 +3,8 @@ package hello.login.controller;
 import hello.login.repository.ItemRepository;
 import hello.login.domain.member.GenderType;
 import hello.login.domain.Member;
-import hello.login.repository.MemberRepository;
 import hello.login.domain.member.MobileCarrierType;
+import hello.login.repository.jpa.JpaMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +18,7 @@ import java.util.*;
 @RequiredArgsConstructor
 @RequestMapping("/members")
 public class MemberController {
-    private final MemberRepository memberRepository;
+    private final JpaMemberRepository memberRepository;
     private final ItemRepository itemRepository;
 
     @ModelAttribute("hobbies")
@@ -76,7 +76,8 @@ public class MemberController {
 
     @GetMapping("/userInfo/{memberId}")
     public String userInfo(@PathVariable long memberId, Model model) {
-        Member member = memberRepository.findById(memberId);
+        Optional<Member> optionalMember = memberRepository.findById(memberId);
+        Member member = optionalMember.orElseThrow(() -> new IllegalArgumentException("Invalid member Id: " + memberId));
         model.addAttribute("member", member);
         Set<String> itemNames = member.getPurchaseItems().keySet();
 
